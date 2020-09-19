@@ -7,12 +7,11 @@ package projeto.integrador;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import projeto.integrador.login.Login;
+import projeto.integrador.GUI.login.Login;
 
 /**
  *

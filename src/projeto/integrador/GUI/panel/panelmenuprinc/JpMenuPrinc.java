@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto.integrador.panel.panelmenuprinc;
+package projeto.integrador.GUI.panel.panelmenuprinc;
 
 import java.awt.Color;
 import java.awt.Image;

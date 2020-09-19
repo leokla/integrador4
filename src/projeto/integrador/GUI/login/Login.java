@@ -1,9 +1,9 @@
 
-package projeto.integrador.login;
+package projeto.integrador.GUI.login;
 
 import projeto.integrador.CarregaIMG;
 import projeto.integrador.animation.TAnimation;
-import projeto.integrador.register.Register;
+import projeto.integrador.GUI.register.Register;
 
 import javax.swing.*;
 import java.awt.*;

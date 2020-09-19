@@ -6,8 +6,8 @@
 package projeto.integrador.animation;
 
 import java.awt.Component;
-import projeto.integrador.panel.panelmenuprinc.JpMenuPrinc;
-import projeto.integrador.panel.panelsubmenuintra.JpSubMenuIntra;
+import projeto.integrador.GUI.panel.panelmenuprinc.JpMenuPrinc;
+import projeto.integrador.GUI.panel.panelsubmenuintra.JpSubMenuIntra;
 
 /**
  *

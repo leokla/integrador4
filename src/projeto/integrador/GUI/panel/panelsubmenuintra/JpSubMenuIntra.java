@@ -1,5 +1,5 @@
 
-package projeto.integrador.panel.panelsubmenuintra;
+package projeto.integrador.GUI.panel.panelsubmenuintra;
 
 import java.awt.Dimension;
 import java.awt.Font;

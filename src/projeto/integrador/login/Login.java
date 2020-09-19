@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import projeto.integrador.animation.TAnimation;
+import projeto.integrador.gui.Register;
 
 
 /**
@@ -102,6 +102,7 @@ public class Login extends javax.swing.JFrame {
         jPFPass = new javax.swing.JPasswordField();
         jBExit = new javax.swing.JButton();
         jBCon = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(197, 197, 197));
@@ -138,6 +139,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
+        jButton1.setText("Cadastrar-se");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,14 +158,19 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jBCon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLbUser)
-                    .addComponent(jLbPass))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTTUser, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(jPFPass))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLbUser)
+                            .addComponent(jLbPass))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTTUser, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                            .addComponent(jPFPass)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -170,7 +184,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPFPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbPass))
-                .addGap(100, 100, 100)
+                .addGap(59, 59, 59)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBExit)
                     .addComponent(jBCon))
@@ -203,6 +219,10 @@ public class Login extends javax.swing.JFrame {
             jBExit.doClick();
         }
     }//GEN-LAST:event_jBExitKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       register();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
    
     
@@ -244,10 +264,26 @@ public class Login extends javax.swing.JFrame {
         setVisible(false);
         
     }
+    private void register() {
+//
+//        CarregaIMG img = new CarregaIMG();
+//        Image ImgConfig = img.loadImage("image/sistema1.png");
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();/* Captura a dimensão da tela do computador*/
+        int x = (int) ((dimension.getWidth() - 400) / 2);/* Define a largura da janela*/
+        int y = (int) ((dimension.getHeight() - 300) / 2);/* Define a altura da janela*/
+
+        Register register = new Register(x,y);
+
+        register.setVisible(true);
+
+        setVisible(false);
+
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCon;
     private javax.swing.JButton jBExit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLbPass;
     private javax.swing.JLabel jLbUser;
     private javax.swing.JPasswordField jPFPass;

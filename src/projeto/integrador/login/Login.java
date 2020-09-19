@@ -2,20 +2,13 @@
 package projeto.integrador.login;
 
 import projeto.integrador.CarregaIMG;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
+import projeto.integrador.animation.TAnimation;
+import projeto.integrador.register.Register;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import projeto.integrador.animation.TAnimation;
-import projeto.integrador.gui.Register;
 
 
 /**

@@ -24,8 +24,15 @@ public class ProjetoIntegrador4 {
     Login guiLogin;
 
     public ProjetoIntegrador4() {
-        showGuiLogin();
         conexao= new Conexao();
+        conectar();
+        /**
+         * Tratativa para não iniciar a tela com conexão nll
+         */
+        do{}
+        while (conexao.getConexao().getConexao() == null);
+        
+        showGuiLogin();
     }
 
     private void showGuiLogin() {
@@ -51,12 +58,12 @@ public class ProjetoIntegrador4 {
         }
     }
 
-    public void conectar() {
+    public final void conectar() {
         try {
             conexao.conectar();
         } catch (SGBDException | ClassNotFoundException | SQLException ex) {
             // houve erro
-            System.out.println(ex.getMessage());
+            //System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(this.guiLogin,
                     "Não foi possível estabelecer uma conexão com o banco de dados!"
                             + "\nO sistema será encerrado",
@@ -92,8 +99,8 @@ public class ProjetoIntegrador4 {
      */
     public static void main(String[] args) {
         ProjetoIntegrador4 pi4 = new ProjetoIntegrador4();
-        pi4.conectar();
-        pi4.desconectar();
+        //pi4.conectar();
+        //
 
     }
     

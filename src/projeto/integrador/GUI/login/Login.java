@@ -9,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import projeto.integrador.DAO.UsuarioDAO;
+import static projeto.integrador.ProjetoIntegrador4.conexao;
 
 
 /**
@@ -57,7 +62,7 @@ public class Login extends javax.swing.JFrame {
         jTTUser.addActionListener((ActionEvent e) -> {
             
             if(jTTUser.getText().equals(""))/* Se campo usuário vazio lança um erro*/
-                JOptionPane.showMessageDialog(null, "CAMPO USUÁRIO VAZIO!", "ERRO",
+                JOptionPane.showMessageDialog(null, "Campo usuário vazio!", "ERRO",
                         JOptionPane.ERROR_MESSAGE);
             else/* Se não remete po fóco ao campo de senha*/
                 jPFPass.requestFocus();
@@ -68,7 +73,7 @@ public class Login extends javax.swing.JFrame {
         jPFPass.addActionListener((ActionEvent e) -> {
             
             if(jLbPass.getText().equals(""))/* Se campo de senha vazio lança um erro*/
-                JOptionPane.showMessageDialog(null, "CAMPO SENHA VAZIO!", "ERRO",
+                JOptionPane.showMessageDialog(null, "Campo senha vazio!", "ERRO",
                         JOptionPane.ERROR_MESSAGE);
             else{/* Se não remete o fóco ao botão conectar*/
                 
@@ -249,6 +254,11 @@ public class Login extends javax.swing.JFrame {
      * Método que encerra a aplicação
      */
     private void exit(){
+        try {
+            conexao.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.exit(0);
     }
     
@@ -257,27 +267,41 @@ public class Login extends javax.swing.JFrame {
      */
     private void connect() {
 
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        String user = jTTUser.getText().trim();
+        String pass = jPFPass.getText().trim();
+       
+        UsuarioDAO udao = new UsuarioDAO();
+        if(udao.autenticaUsuario(user, pass)){
         
-        int x = (int) dimension.getWidth();
-        int y = (int) dimension.getHeight();
+            Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
-        Dimension di = new Dimension(1360, 760);
-        
-        int sizeX = (int) (x * 0.95);
-        int sizeY = (int) (y * 0.90);
-        
-        TAnimation frame = new TAnimation();
-        frame.setSize(sizeX, sizeY);
-        frame.setMinimumSize(di);
-        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        frame.setLocationRelativeTo(null);
-        //frame.setIconImage(ImgConfig);
-        
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
-        setVisible(false);
+            int x = (int) dimension.getWidth();
+            int y = (int) dimension.getHeight();
+
+            Dimension di = new Dimension(1360, 760);
+
+            int sizeX = (int) (x * 0.95);
+            int sizeY = (int) (y * 0.90);
+
+            TAnimation frame = new TAnimation();
+            frame.setSize(sizeX, sizeY);
+            frame.setMinimumSize(di);
+            frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+            frame.setLocationRelativeTo(null);
+            //frame.setIconImage(ImgConfig);
+
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+            setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "ERRO",
+                        JOptionPane.ERROR_MESSAGE);
+            jTTUser.setText("");
+            jPFPass.setText("");
+            jTTUser.requestFocus();
+        }
         
     }
     private void register() {
@@ -291,7 +315,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLbPass;
     private javax.swing.JLabel jLbUser;
-    private javax.swing.JPasswordField jPFPass;
-    private javax.swing.JTextField jTTUser;
+    public javax.swing.JPasswordField jPFPass;
+    public javax.swing.JTextField jTTUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -89,4 +89,26 @@ public class UsuarioDAO {
         return null;
     }
 
+    public boolean autenticaUsuario(String user, String pass)  {
+        try {
+            // consultar o código
+            String sql = "select * from usuario where nome = '" + user + "' ";
+            sql += "and pass = '" + pass + "'";
+
+            System.out.println(sql);
+            // executar sql
+            ResultSet rs = this.getConexao().getBd().consulta(sql);
+
+            // testa resultado
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (ClassNotFoundException | SQLException | SGBDException e) {
+            //TODO tratar erro
+        }
+
+        // return, não existe o código
+        return false;
+    }
 }

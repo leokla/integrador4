@@ -24,12 +24,14 @@ public class UsuarioDAO {
 //                sql = "insert into usuario (name, email, telefone, genero)"
 //                        + " values (?, ?, ?, ?)";
                 
+                String pass = PasswordGenerator.getRandomPassword();
+                
                 sql = "INSERT INTO public.usuario " +
                      "(name, pass, lastname, email, genero, telefone) ";
                 //sql += "values (?, ?, ?, ? , ?, ?)";
                 sql += "values (";
                 sql += "'"+user.getNome()+"', ";
-                sql += "'"+PasswordGenerator.getRandomPassword()+"', ";
+                sql += "'"+pass+"', ";
                 sql += "'"+" "+"', ";
                 sql += "'"+user.getEmail()+"', ";
                 sql += "'"+user.getGenero()+"', ";
@@ -42,7 +44,7 @@ public class UsuarioDAO {
                 insert.executeUpdate(sql);
                 insert.close();
               
-                JOptionPane.showMessageDialog(frame, "Sucesso. Sua senha foi enviada para o email: " + user.getEmail(), "Sucesso",
+                JOptionPane.showMessageDialog(frame, "Sucesso. Sua senha é: " + pass, "Sucesso",
                         JOptionPane.PLAIN_MESSAGE);
             } else {
                 //TODO tratar erro de usuario existente
@@ -82,7 +84,7 @@ public class UsuarioDAO {
     public Usuario getByName(String user)  {
         try {
             // consultar o código
-            String sql = "select * from usuario where name = " + user;
+            String sql = "select * from usuario where name = " + "'"+user+"'";
 
             // executar sql
             ResultSet rs = this.getConexao().getBd().consulta(sql);

@@ -284,6 +284,9 @@ public class Register extends javax.swing.JFrame {
             PostDAO postDAO = new PostDAO();
             postDAO.inserir(new Post(user,campoPost.getText()));
         }
+        clearData();
+        this.setVisible(false);
+        login.setVisible(true);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void campoImagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoImagemClienteMouseClicked
@@ -320,6 +323,15 @@ public class Register extends javax.swing.JFrame {
         }
 
         return genero;
+    }
+    
+    private void clearData(){
+        campoNome.setText("");
+        campoTelefone.setText("");
+        campoEmail.setText("");
+        campoPost.setText("");
+        campoMasculino.setSelected(false);
+        campoFeminino.setSelected(false);
     }
 
 

@@ -15,22 +15,20 @@ public class PostDAO {
 
         try {
             String sql;
-                sql = "insert into post (iduser, conteudo) ";
-                sql += "values(";
-                sql += "";
+            
+                sql = "INSERT INTO public.post (conteudo, user_id) ";
+                sql += "VALUES (";
+                sql += "'"+post.getConteudo()+"', ";
+             
+                sql += post.getUser().getId();
+                sql += ")";
                         
-
+                System.out.println(sql);
                 // obtem objeto
-                Statement ps = this.getConexao().getBd().getStatement(sql);
-
-//                // atribui valores
-//                ps.setInt(1, post.getUser().getId());
-//                ps.setString(2, post.getConteudo());
-//
-//                // regrava no bd
-//                this.getConexao().getBd().executaSQL(ps);
-                
-                
+                Statement insert = this.getConexao().getBd().getStatement(sql);
+                insert.executeUpdate(sql);
+                insert.close();
+//           
         } catch (ClassNotFoundException | SQLException | SGBDException e) {
             // throw new CidadeException(e.getMessage());
         }

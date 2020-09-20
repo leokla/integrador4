@@ -5,7 +5,6 @@
  */
 package projeto.integrador.GUI.register;
 
-
 import projeto.integrador.CarregaIMG;
 import projeto.integrador.DAO.PostDAO;
 import projeto.integrador.DAO.UsuarioDAO;
@@ -13,19 +12,24 @@ import projeto.integrador.model.Post;
 import projeto.integrador.model.Usuario;
 
 import javax.swing.*;
+import projeto.integrador.GUI.login.Login;
 
 public class Register extends javax.swing.JFrame {
 
    
 
-
-    public Register(int x, int y) {
+    private Login login;
+    public Register(int x, int y, Login login) {
         initComponents();
         setLocation(x, y);
+        this.login = login;
     }
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
+        
+        
         ButtonGroup buttonGroup1 = new ButtonGroup();
         JPanel jPanel1 = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -40,7 +44,7 @@ public class Register extends javax.swing.JFrame {
         campoTelefone = new JTextField();
         JLabel campoImagemCliente = new JLabel();
         JButton btnSalvar = new JButton();
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+        // Variables declaration - do not modify                     
         JButton btnCancel = new JButton();
         JLabel jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
@@ -48,7 +52,7 @@ public class Register extends javax.swing.JFrame {
         campoPost = new JTextArea();
         JLabel jLabel7 = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Clientes");
         setResizable(false);
 
@@ -258,10 +262,13 @@ public class Register extends javax.swing.JFrame {
 
         pack();
 
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        login.setVisible(true);
+        
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed

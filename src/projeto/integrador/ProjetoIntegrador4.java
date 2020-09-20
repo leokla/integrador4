@@ -60,7 +60,7 @@ public class ProjetoIntegrador4 {
                     "Não foi possível estabelecer uma conexão com o banco de dados!"
                             + "\nO sistema será encerrado",
                     "Conexão com o Banco de Dados", JOptionPane.ERROR_MESSAGE);
-            System.exit(-1);
+            //System.exit(-1);
         }
     }
 

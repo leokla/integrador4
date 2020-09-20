@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
      */
     public static String filial = "";
     public static String empresa = "";
+    public static Register register;
     
     private JButton btConfig;
     public Login(int x, int y) {
@@ -82,9 +83,34 @@ public class Login extends javax.swing.JFrame {
                 "none");
         jBCon.setEnabled(false);
         
+        /*
+        Ja carrega a tela e deixa em backgourd
+        */
+       try {
+
+            /* Define o estilo d elayout para Nimbus*/
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+
+            Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();/* Captura a dimensão da tela do computador*/
+            int x1 = (int) ((dimension.getWidth() - 400) / 2);/* Define a largura da janela*/
+            int y1 = (int) ((dimension.getHeight() - 300) / 2);/* Define a altura da janela*/
+             register = new Register(x1,y1, this);
+            register.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            UIManager.put("OptionPane.font", new Font("SansSerif", Font.BOLD, 14));
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+       
+        
     }
 
-   
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -230,10 +256,7 @@ public class Login extends javax.swing.JFrame {
      * Método que conecta a aplicação ao bando de dados
      */
     private void connect() {
-//
-//        CarregaIMG img = new CarregaIMG();
-//        Image ImgConfig = img.loadImage("image/sistema1.png");
-        
+
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         
         int x = (int) dimension.getWidth();
@@ -258,19 +281,8 @@ public class Login extends javax.swing.JFrame {
         
     }
     private void register() {
-//
-//        CarregaIMG img = new CarregaIMG();
-//        Image ImgConfig = img.loadImage("image/sistema1.png");
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();/* Captura a dimensão da tela do computador*/
-        int x = (int) ((dimension.getWidth() - 400) / 2);/* Define a largura da janela*/
-        int y = (int) ((dimension.getHeight() - 300) / 2);/* Define a altura da janela*/
-
-        Register register = new Register(x,y);
-
-        register.setVisible(true);
-
+        register.setVisible(true);  
         setVisible(false);
-
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,7 +46,7 @@ public class UsuarioDAO {
     public boolean existeUsuario(String user)  {
         try {
             // consultar o código
-            String sql = "select * from usuario where nome = " + user;
+            String sql = "select * from usuario where name = " + user;
 
             // executar sql
             ResultSet rs = this.getConexao().getBd().consulta(sql);
@@ -66,7 +66,7 @@ public class UsuarioDAO {
     public Usuario getByName(String user)  {
         try {
             // consultar o código
-            String sql = "select * from usuario where nome = " + user;
+            String sql = "select * from usuario where name = " + user;
 
             // executar sql
             ResultSet rs = this.getConexao().getBd().consulta(sql);
@@ -92,7 +92,7 @@ public class UsuarioDAO {
     public boolean autenticaUsuario(String user, String pass)  {
         try {
             // consultar o código
-            String sql = "select * from usuario where nome = '" + user + "' ";
+            String sql = "select * from usuario where name = '" + user + "' ";
             sql += "and pass = '" + pass + "'";
 
             System.out.println(sql);

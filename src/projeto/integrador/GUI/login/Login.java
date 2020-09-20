@@ -301,6 +301,7 @@ public class Login extends javax.swing.JFrame {
             jTTUser.setText("");
             jPFPass.setText("");
             jTTUser.requestFocus();
+            jBCon.setEnabled(false);
         }
         
     }

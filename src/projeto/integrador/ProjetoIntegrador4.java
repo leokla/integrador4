@@ -9,12 +9,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import projeto.integrador.GUI.login.Login;
 import projeto.integrador.conexao.Conexao;
 import projeto.integrador.conexao.SGBDException;
+import projeto.integrador.util.Progressbar;
 
 
 public class ProjetoIntegrador4 {
@@ -24,15 +26,29 @@ public class ProjetoIntegrador4 {
     Login guiLogin;
 
     public ProjetoIntegrador4() {
-        conexao= new Conexao();
-        conectar();
-        /**
-         * Tratativa para não iniciar a tela com conexão nll
-         */
-        do{}
-        while (conexao.getConexao().getConexao() == null);
         
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                 conexao= new Conexao();
+                 conectar();
+            }
+        }).start();
         showGuiLogin();
+       
+        /**
+         * Tratativa para não iniciar a tela com conexão null
+         * 
+         * TODO Colocar tratativa de tempo
+         */
+        do{ 
+            Progressbar progressbar = new Progressbar();
+            progressbar.createAndShowGUI((JFrame) guiLogin);
+        }    
+        while (conexao.getConexao() == null || conexao.getConexao().getConexao() == null);
+        
+        
     }
 
     private void showGuiLogin() {

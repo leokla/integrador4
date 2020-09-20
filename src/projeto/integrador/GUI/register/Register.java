@@ -287,6 +287,7 @@ public class Register extends javax.swing.JFrame {
         clearData();
         this.setVisible(false);
         login.setVisible(true);
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void campoImagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoImagemClienteMouseClicked

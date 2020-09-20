@@ -44,7 +44,7 @@ public class UsuarioDAO {
                 insert.executeUpdate(sql);
                 insert.close();
               
-                JOptionPane.showMessageDialog(frame, "Sucesso. Sua senha é: " + pass, "Sucesso",
+                JOptionPane.showMessageDialog(frame, "Sucesso. Sua senha é: " + pass +". Memorize", "Sucesso",
                         JOptionPane.PLAIN_MESSAGE);
             } else {
                 //TODO tratar erro de usuario existente

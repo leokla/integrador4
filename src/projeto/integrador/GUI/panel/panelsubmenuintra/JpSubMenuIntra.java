@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import projeto.integrador.CarregaIMG;
+import projeto.integrador.DAO.PostDAO;
 import static projeto.integrador.animation.TAnimation.jSlidingPanel1;
 import projeto.integrador.util.JSlidingPanel;
 
@@ -120,58 +121,60 @@ public class JpSubMenuIntra extends javax.swing.JPanel {
    public static void fillTable() {
 
 
-        Object[][] obj ={{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
-        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"}
-        
-        
-        };
+//        Object[][] obj ={{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},{"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"},
+//        {"Sistema", "É que daqui de um poco, não adianta, olha só, é o seguinte"}
+//        
+//        
+//        };
 
-
+        PostDAO postDAO = new PostDAO();
+        Object [][] obj = postDAO.getPostData();
+       
         TableSorterUniv ts = (TableSorterUniv) jTabble.getModel();
         TableModel tm = (TableModel) ts.getTableModel();
 

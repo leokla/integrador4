@@ -30,7 +30,7 @@ public class PasswordGenerator {
         for (int i = 0; i < length; i++) {
             result[i] = ALL_CHARS[RANDOM.nextInt(ALL_CHARS.length)];
         }
-        return new String(result);
+        return new String(result).toUpperCase();
     }
 
     public static String getRandomPassword() {

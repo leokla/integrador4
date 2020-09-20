@@ -69,7 +69,7 @@ public class DaoStringConexaoPostgres implements DaoStringConexao {
          vo.setSgbd("PostgreSQL");
          vo.setHost("windowsteste.cit5w3xssroz.us-east-1.rds.amazonaws.com");
          vo.setPorta("5432");
-         vo.setBaseDados("teste");
+         vo.setBaseDados("postgres");
          vo.setUsuario("teste");
          vo.setSenha("SP17A50doc450");
          vo.setClassDriver("org.postgresql.Driver");

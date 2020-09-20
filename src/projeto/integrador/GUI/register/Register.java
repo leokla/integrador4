@@ -7,6 +7,10 @@ package projeto.integrador.GUI.register;
 
 
 import projeto.integrador.CarregaIMG;
+import projeto.integrador.DAO.PostDAO;
+import projeto.integrador.DAO.UsuarioDAO;
+import projeto.integrador.model.Post;
+import projeto.integrador.model.Usuario;
 
 import javax.swing.*;
 
@@ -29,11 +33,11 @@ public class Register extends javax.swing.JFrame {
         JLabel jLabel3 = new JLabel();
         JLabel jLabel4 = new JLabel();
         JPanel jPanel2 = new JPanel();
-        JRadioButton campoMasculino = new JRadioButton();
-        JRadioButton campoFeminino = new JRadioButton();
-        JTextField campoNome = new JTextField();
-        JTextField campoEmail = new JTextField();
-        JTextField campoTelefone = new JTextField();
+        campoMasculino = new JRadioButton();
+        campoFeminino = new JRadioButton();
+        campoNome = new JTextField();
+        campoEmail = new JTextField();
+        campoTelefone = new JTextField();
         JLabel campoImagemCliente = new JLabel();
         JButton btnSalvar = new JButton();
         // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -41,7 +45,7 @@ public class Register extends javax.swing.JFrame {
         JLabel jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
         JScrollPane jScrollPane1 = new JScrollPane();
-        JTextArea campoPost = new JTextArea();
+        campoPost = new JTextArea();
         JLabel jLabel7 = new JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,6 +257,7 @@ public class Register extends javax.swing.JFrame {
         );
 
         pack();
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -260,19 +265,18 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        //        Cliente cliente = new Cliente();
-        //        cliente.setNome(campoNome.getText());
-        //        cliente.setEmail(campoEmail.getText());
-        //        cliente.setTelefone(campoTelefone.getText());
-        //        cliente.setImagem(gerenteDeImagens.getUrlImagem());
-        //        if (campoMasculino.isSelected()) {
-            //            cliente.setSexo("Masculino");
-            //        } else if (campoFeminino.isSelected()) {
-            //            cliente.setSexo("Feminino");
-            //        }
-        //        clienteDAO.saveOrUpdate(cliente);
-
-        // TODO add your handling code here:
+        Usuario user = new Usuario(
+                campoNome.getText(),
+                campoTelefone.getText(),
+                campoEmail.getText(),
+                getGenero());
+        UsuarioDAO userDAO = new UsuarioDAO();
+        userDAO.inserir(user);
+        if(!campoPost.getText().isEmpty()){
+            user.setId(userDAO.getByName(user.getNome()).getId());
+            PostDAO postDAO = new PostDAO();
+            postDAO.inserir(new Post(user,campoPost.getText()));
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void campoImagemClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoImagemClienteMouseClicked
@@ -300,4 +304,23 @@ public class Register extends javax.swing.JFrame {
         CarregaIMG charge = new CarregaIMG();
         return new ImageIcon(charge.loadImage(caminho));
     }
+    private String getGenero(){
+        String genero;
+        if(campoMasculino.isSelected()){
+            genero = "Masculino";
+        }else{
+            genero = "Feminino";
+        }
+
+        return genero;
+    }
+
+
+    private JTextField campoNome;
+    private  JTextField campoTelefone;
+    private JTextField campoEmail;
+    private JTextArea campoPost;
+    private JRadioButton campoMasculino;
+    private JRadioButton campoFeminino;
+
 }

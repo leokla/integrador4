@@ -49,7 +49,7 @@ public class DaoConectarBD {
         conexao = DriverManager.getConnection(url,
                 this.getVoConexao().getUsuario(),
                 this.getVoConexao().getSenha());
-        conexao.setAutoCommit(false);
+        conexao.setAutoCommit(true);
 
         // retorna conexao
         return conexao;

@@ -278,7 +278,7 @@ public class Register extends javax.swing.JFrame {
                 campoEmail.getText(),
                 getGenero());
         UsuarioDAO userDAO = new UsuarioDAO();
-        userDAO.inserir(user);
+        userDAO.inserir(user, (JFrame) this);
         if(!campoPost.getText().isEmpty()){
             user.setId(userDAO.getByName(user.getNome()).getId());
             PostDAO postDAO = new PostDAO();
@@ -314,9 +314,9 @@ public class Register extends javax.swing.JFrame {
     private String getGenero(){
         String genero;
         if(campoMasculino.isSelected()){
-            genero = "Masculino";
+            genero = "M";
         }else{
-            genero = "Feminino";
+            genero = "F";
         }
 
         return genero;

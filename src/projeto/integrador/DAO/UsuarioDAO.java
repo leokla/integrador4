@@ -8,33 +8,49 @@ import projeto.integrador.model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import projeto.integrador.util.PasswordGenerator;
 
 public class UsuarioDAO {
-    public boolean inserir(Usuario user){
+    public boolean inserir(Usuario user, JFrame frame){
 
         try {
             // testa se existe
             String sql;
+            
             if (!this.existeUsuario(user.getNome())) {
-                sql = "insert into usuario (nome, email, telefone, genero)"
-                        + " values (?, ?, ?, ?)";
+//                sql = "insert into usuario (name, email, telefone, genero)"
+//                        + " values (?, ?, ?, ?)";
+                
+                sql = "INSERT INTO public.usuario " +
+                     "(name, pass, lastname, email, genero, telefone) ";
+                //sql += "values (?, ?, ?, ? , ?, ?)";
+                sql += "values (";
+                sql += "'"+user.getNome()+"', ";
+                sql += "'"+PasswordGenerator.getRandomPassword()+"', ";
+                sql += "'"+" "+"', ";
+                sql += "'"+user.getEmail()+"', ";
+                sql += "'"+user.getGenero()+"', ";
+                sql += "'"+user.getTelefone()+"' ";
+                sql += ")";
 
+                System.out.println(sql);
                 // obtem objeto
-                PreparedStatement ps = this.getConexao().getBd().getStatement(sql);
-
-                // atribui valores
-                ps.setString(1, user.getNome());
-                ps.setString(2, user.getEmail());
-                ps.setString(3, user.getTelefone());
-                ps.setString(4, user.getGenero());
-
-                // regrava no bd
-                this.getConexao().getBd().executaSQL(ps);
+                Statement insert = this.getConexao().getBd().getStatement(sql);
+                insert.executeUpdate(sql);
+                insert.close();
+              
+                JOptionPane.showMessageDialog(frame, "Sucesso. Sua senha foi enviada para o email: " + user.getEmail(), "Sucesso",
+                        JOptionPane.PLAIN_MESSAGE);
             } else {
                 //TODO tratar erro de usuario existente
             }
         } catch (ClassNotFoundException | SQLException | SGBDException e) {
-           // throw new CidadeException(e.getMessage());
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(frame, "Falha ao inserir usuário!", "ERRO",
+                        JOptionPane.ERROR_MESSAGE);
         }
 
         // return, tudo certo ao salvar
@@ -75,7 +91,7 @@ public class UsuarioDAO {
             while (rs.next()) {
                 return new Usuario(
                         rs.getInt("id"),
-                        rs.getString("nome"),
+                        rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("telefone"),
                         rs.getString("genero"));
@@ -100,6 +116,7 @@ public class UsuarioDAO {
             ResultSet rs = this.getConexao().getBd().consulta(sql);
 
             // testa resultado
+           
             while (rs.next()) {
                 return true;
             }

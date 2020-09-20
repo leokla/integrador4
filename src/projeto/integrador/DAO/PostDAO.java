@@ -8,24 +8,29 @@ import projeto.integrador.model.Usuario;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PostDAO {
     public boolean inserir(Post post){
 
         try {
             String sql;
-                sql = "insert into post (iduser, conteudo)"
-                        + " values (?, ?)";
+                sql = "insert into post (iduser, conteudo) ";
+                sql += "values(";
+                sql += "";
+                        
 
                 // obtem objeto
-                PreparedStatement ps = this.getConexao().getBd().getStatement(sql);
+                Statement ps = this.getConexao().getBd().getStatement(sql);
 
-                // atribui valores
-                ps.setInt(1, post.getUser().getId());
-                ps.setString(2, post.getConteudo());
-
-                // regrava no bd
-                this.getConexao().getBd().executaSQL(ps);
+//                // atribui valores
+//                ps.setInt(1, post.getUser().getId());
+//                ps.setString(2, post.getConteudo());
+//
+//                // regrava no bd
+//                this.getConexao().getBd().executaSQL(ps);
+                
+                
         } catch (ClassNotFoundException | SQLException | SGBDException e) {
             // throw new CidadeException(e.getMessage());
         }

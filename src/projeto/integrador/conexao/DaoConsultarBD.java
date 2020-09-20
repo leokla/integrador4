@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -16,18 +17,18 @@ import java.sql.SQLException;
 public class DaoConsultarBD {
 
     DaoConectarBD bd;
-    Connection conexao;
+    public Connection conexao;
 
     public DaoConsultarBD(DaoConectarBD bd) {
         this.bd = bd;
     }
     
-    public PreparedStatement getStatement(String sql) throws SQLException, SGBDException, ClassNotFoundException {
-        PreparedStatement comando;
+    public Statement getStatement(String sql) throws SQLException, SGBDException, ClassNotFoundException {
+        Statement comando;
         conexao = bd.getConexao();
 
         // prepara consulta
-        comando = conexao.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        comando = conexao.createStatement();
 
         // retorna
         return comando;
@@ -107,4 +108,14 @@ public class DaoConsultarBD {
         // executa comando sql
         comando.executeUpdate();
     }
+
+    public Connection getConexao() {
+        return conexao;
+    }
+
+    public void setConexao(Connection conexao) {
+        this.conexao = conexao;
+    }
+    
+    
 }

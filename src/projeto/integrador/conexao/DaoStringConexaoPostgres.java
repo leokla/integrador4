@@ -14,7 +14,7 @@ public class DaoStringConexaoPostgres implements DaoStringConexao {
     @Override
     public String getStringConexao(VoConexao vo) {
         // monta conexão
-        String url = "jdbc:mysql://" + vo.getHost() +
+        String url = "jdbc:postgresql://" + vo.getHost() +
                 ":" + vo.getPorta() + "/" + vo.getBaseDados();
 
         //mostra conexao
